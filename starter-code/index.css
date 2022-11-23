@@ -11,25 +11,44 @@
 /* ------------------- */
 
 :root {
-  /* colors - Create an additional 3-5 colors */
+  /* colors */
   --clr-dark: 230 35% 7%;
   --clr-light: 231 77% 90%;
   --clr-white: 0 0% 100%;
 
   /* font-sizes */
-  --fs-900: 9.375rem;
-  --fs-800: 6.25rem;
-  --fs-700: 3.5rem;
-  --fs-600: 2rem;
+  --fs-900: clamp(5rem, 7vw + 1rem, 9.375rem);
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-400: 1.125rem;
+  --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
 
-  /* font-families - Create an additional 3-5 fonts*/
+  /* font-families */
   --ff-serif: "Bellefair", serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
+}
+
+@media (min-width: 35em) {
+  :root {
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+@media (min-width: 45em) {
+  :root {
+    /* font-sizes */
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-400: 1.125rem;
+  }
 }
 
 /* ------------------- */
@@ -76,8 +95,11 @@ body {
   font-size: var(--fs-400);
   background-color: hsl(var(--clr-dark));
   color: hsl(var(--clr-white));
-  line-height: 1.6;
+  line-height: 1.5;
   min-width: 100vh;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 /* reset image presets */
@@ -118,9 +140,21 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.flex.even-columns > * {
+  width: 100%;
+}
+
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
+}
+
+.block {
+  display: block;
+}
+
+.center {
+  text-align: center;
 }
 
 .flow > *:where(:not(:first-child)) {
@@ -129,8 +163,38 @@ select {
 
 .container {
   padding-inline: 2em;
-  max-width: 60rem;
   margin-inline: auto;
+  max-width: 80rem;
+}
+
+.grid-container {
+  display: grid;
+  place-items: center;
+}
+
+.grid-container * {
+  max-width: 50ch;
+}
+
+@media (min-width: 45rem) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
+        2rem,
+        1fr
+      );
+  }
+
+  .grid-container > *:first-child {
+    grid-column: 2;
+    outline: 1px solid red;
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+    outline: 1px solid yellow;
+  }
 }
 
 .sr-only {
@@ -246,15 +310,15 @@ select {
 /* ------------------- */
 
 .large-button {
+  font-size: 2rem;
   position: relative;
-  display: inline-grid;
   z-index: 1;
-  padding: 0 2em;
+  display: inline-grid;
   place-items: center;
+  padding: 0 2em;
+  border-radius: 50%;
   aspect-ratio: 1;
   text-decoration: none;
-  border-radius: 50%;
-  background-color: blur(10rem);
 }
 
 .large-button::after {
