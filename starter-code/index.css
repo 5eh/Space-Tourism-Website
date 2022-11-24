@@ -1,10 +1,5 @@
-/* --------------------------------------------------------------------- */
-/* Notes:                                                                */
-/* 1. Always start a class="" by defining the custom element and then    */
-/* the utility classes it will use.                                      */
-/* 2. Create additional colors and general text to use this Design       */
-/* System with other projects.                                           */
-/* --------------------------------------------------------------------- */
+/* Notes:  */
+/* .class[attributes-of-class]  */
 
 /* ------------------- */
 /* Custom properties   */
@@ -17,7 +12,7 @@
   --clr-white: 0 0% 100%;
 
   /* font-sizes */
-  --fs-900: clamp(5rem, 7vw + 1rem, 9.375rem);
+  --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
   --fs-600: 1rem;
@@ -52,12 +47,12 @@
 }
 
 /* ------------------- */
-/* HTML Reset          */
+/* Reset               */
 /* ------------------- */
 
-/* https://piccalil.li/blog/a-modern-css-reset/ - Good tool for resetting modern CSS styles when starting a new project */
+/* https://piccalil.li/blog/a-modern-css-reset/ */
 
-/* Box sizing - Usually a default for websites, this removes unnecessary borders */
+/* Box sizing */
 *,
 *::before,
 *::after {
@@ -65,14 +60,12 @@
 }
 
 /* Reset margins */
-
 body,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
 p,
 figure,
 picture {
@@ -89,22 +82,22 @@ p {
   font-weight: 400;
 }
 
-/* set up body */
+/* set up the body */
 body {
   font-family: var(--ff-sans-normal);
   font-size: var(--fs-400);
-  background-color: hsl(var(--clr-dark));
   color: hsl(var(--clr-white));
+  background-color: hsl(var(--clr-dark));
   line-height: 1.5;
-  min-width: 100vh;
-
+  min-height: 100vh;
+  overflow-x: hidden;
   display: grid;
   grid-template-rows: min-content 1fr;
 }
 
-/* reset image presets */
+/* make images easier to work with */
 img,
-picture {
+picutre {
   max-width: 100%;
   display: block;
 }
@@ -130,7 +123,7 @@ select {
 }
 
 /* ------------------- */
-/* Utility Classes     */
+/* Utility classes     */
 /* ------------------- */
 
 /* general */
@@ -140,21 +133,13 @@ select {
   gap: var(--gap, 1rem);
 }
 
-.flex.even-columns > * {
-  width: 100%;
-}
-
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
 }
 
-.block {
+.d-block {
   display: block;
-}
-
-.center {
-  text-align: center;
 }
 
 .flow > *:where(:not(:first-child)) {
@@ -168,32 +153,37 @@ select {
 }
 
 .grid-container {
+  text-align: center;
   display: grid;
   place-items: center;
+  padding-inline: 1rem;
 }
 
 .grid-container * {
   max-width: 50ch;
 }
 
-@media (min-width: 45rem) {
+@media (min-width: 45em) {
   .grid-container {
     text-align: left;
     column-gap: var(--container-gap, 2rem);
-    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
-        2rem,
+    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
+        1rem,
         1fr
       );
   }
 
   .grid-container > *:first-child {
     grid-column: 2;
-    outline: 1px solid red;
   }
 
   .grid-container > *:last-child {
     grid-column: 3;
-    outline: 1px solid yellow;
+  }
+
+  .grid-container--home {
+    padding-bottom: max(6rem, 20vh);
+    align-items: end;
   }
 }
 
@@ -209,32 +199,44 @@ select {
   border: 0;
 }
 
-/* design system colors - Create an additional 3-5 .bg's */
+.skip-to-content {
+  position: absolute;
+  z-index: 1001;
+  background: hsl(var(--clr-white) / 1);
+  color: hsl(var(--clr-dark));
+  padding: 0.5rem 1rem;
+  margin-inline: auto;
+  transform: translateY(-100%);
+  transition: transform 250ms ease-in-out;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
+/* colors */
+
 .bg-dark {
   background-color: hsl(var(--clr-dark));
 }
-.bg-light {
+.bg-accent {
   background-color: hsl(var(--clr-light));
 }
 .bg-white {
   background-color: hsl(var(--clr-white));
 }
 
-/* Create an additional 3-5 texts */
 .text-dark {
   color: hsl(var(--clr-dark));
 }
-.text-gray {
-  color: hsl(var(--clr-light) / 50%);
-}
-.text-light {
+.text-accent {
   color: hsl(var(--clr-light));
 }
 .text-white {
   color: hsl(var(--clr-white));
 }
 
-/* Typography - Create additional fonts */
+/* typography */
 
 .ff-serif {
   font-family: var(--ff-serif);
@@ -300,13 +302,13 @@ select {
 }
 
 .numbered-title span {
-  margin-right: 0.5rem;
+  margin-right: 0.5em;
   font-weight: 700;
-  color: hsl(var(--clr-white) / 25%);
+  color: hsl(var(--clr-white) / 0.25);
 }
 
 /* ------------------- */
-/* Components          */
+/* Compontents         */
 /* ------------------- */
 
 .large-button {
@@ -322,29 +324,41 @@ select {
 }
 
 .large-button::after {
-  background: hsl(var(--clr-white) / 10%);
-  position: absolute;
   content: "";
+  position: absolute;
   z-index: -1;
   width: 100%;
   height: 100%;
+  background: hsl(var(--clr-white) / 0.1);
   border-radius: 50%;
-  transition: opacity 500ms linear, transform 750ms ease-in-out;
   opacity: 0;
+  transition: opacity 500ms linear, transform 750ms ease-in-out;
 }
 
 .large-button:hover::after,
 .large-button:focus::after {
-  transform: scale(1.5);
   opacity: 1;
+  transform: scale(1.5);
+}
+
+/* primary-header */
+.logo {
+  margin: 1.5rem clamp(1rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+  justify-content: space-between;
+  align-items: center;
 }
 
 .primary-navigation {
-  --gap: 8rem;
+  --gap: clamp(1rem, 4vw, 3.5rem);
   --underline-gap: 2rem;
   list-style: none;
+  margin: 1rem 0;
   padding: 0;
-  margin: 0;
+  background: hsl(var(--clr-dark) / 0.95);
+  backdrop-filter: blur(1.5rem);
 }
 
 .primary-navigation a {
@@ -356,17 +370,103 @@ select {
   margin-right: 0.5em;
 }
 
+.mobile-nav-toggle {
+  display: none;
+}
+
+@supports (backdrop-filter: blur(1rem)) {
+  .primary-navigation {
+    background: hsl(var(--clr-light) / 0.05);
+    backdrop-filter: blur(2rem);
+  }
+}
+
+@media (max-width: 35rem) {
+  .primary-navigation {
+    --underline-gap: 0.5rem;
+    position: fixed;
+    inset: 0 0 0 30%;
+    z-index: 100;
+    list-style: none;
+    padding: min(20rem, 15vh) 2rem;
+    margin: 0;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+  }
+
+  .primary-navigation[data-visible="true"] {
+    transform: translateX(0);
+  }
+
+  .primary-navigation.underline-indicators > * {
+    border: 0;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 101;
+    right: 1rem;
+    top: 2rem;
+    background: transparent;
+    background-image: url(./assets/shared/icon-hamburger.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border: 0;
+    transition: background-image 500ms ease-in-out;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url(./assets/shared/icon-close.svg);
+  }
+}
+
+@media (min-width: 35em) {
+  .primary-navigation {
+    padding-inline: clamp(3rem, 5vw, 7rem);
+  }
+}
+
+@media (min-width: 35em) and (max-width: 44.999em) {
+  .primary-navigation a > span {
+    display: none;
+  }
+}
+
+@media (min-width: 45em) {
+  .primary-header::after {
+    content: "";
+    display: block;
+    position: relative;
+    height: 1px;
+    background-color: hsl(var(--clr-light) / 1);
+    width: 100%;
+    margin-right: -3rem;
+    order: 1;
+  }
+
+  nav {
+    order: 2;
+  }
+
+  .primary-navigation {
+    margin-block: 2rem;
+  }
+}
+
 .underline-indicators > * {
   cursor: pointer;
   padding: var(--underline-gap, 1rem) 0;
   border: 0;
-
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
 }
 
 .underline-indicators > *:hover,
 .underline-indicators > *:focus {
-  border-color: hsl(var(--clr-white) / 25%);
+  border-color: hsl(var(--clr-white) / 0.5);
 }
 
 .underline-indicators > .active,
@@ -396,28 +496,27 @@ select {
   background-color: hsl(var(--clr-white) / 1);
 }
 
-.number-indicators > * {
-  font-size: var(--fs-700);
-  font-family: var(--ff-serif);
-  cursor: pointer;
-  border: 0;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  width: 2em;
-  height: 2em;
-  background-color: hsl(var(--clr-white));
-  transition: background-color 500ms linear;
+/* ----------------------------- */
+/* Page specific background      */
+/* ----------------------------- */
+body {
+  background-size: cover;
+  background-position: bottom center;
+}
+/* home */
+.home {
+  background-image: url(./assets/home/background-home-mobile.jpg);
 }
 
-.number-indicators > *:hover,
-.number-indicators > *:focus {
-  background-color: hsl(var(--clr-white) / 0);
-  color: hsl(var(--clr-white) / 1);
-
-  border: 2px solid hsl(var(--clr-white) / 40%);
-  transition: opacity 500ms linear, transform 750ms ease-in-out;
+@media (min-width: 35rem) {
+  .home {
+    background-position: center center;
+    background-image: url(./assets/home/background-home-tablet.jpg);
+  }
 }
 
-.number-indicators > *:active {
-  border: 1px solid hsl(var(--clr-white) / 25%);
+@media (min-width: 45rem) {
+  .home {
+    background-image: url(./assets/home/background-home-desktop.jpg);
+  }
 }
