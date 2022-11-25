@@ -566,6 +566,7 @@ body {
 .grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
+  align-self: start;
 }
 
 .grid-container--destination > .tab-list {
@@ -685,8 +686,7 @@ body {
       ". image content .";
   }
 
-  .grid-container--destination > picture,
-  .grid-container--crew > picture {
+  .grid-container--destination > picture {
     max-width: 90%;
   }
 
@@ -696,24 +696,27 @@ body {
   }
 
   .grid-container--crew {
+    grid-template-columns: minmax(1rem, 1fr) minmax(0, 37rem) minmax(0, 23rem) minmax(
+        1rem,
+        1fr
+      );
+    justify-items: start;
     grid-template-areas:
       ". title title ."
       ". content image ."
       ". tabs image .";
   }
 
-  .grid-container--crew > .dot-indicators {
-    justify-self: start;
-  }
-
   .grid-container--crew > picture {
+    grid-column: span 2;
     align-self: end;
+    max-width: 100%;
   }
 }
 
 [role="tab"] {
   color: hsl(var(--clr-light) / 1);
-  transition: color 500ms ease-in-out;
+  transition: color 1000ms ease-in-out;
 }
 
 [role="tab"]:focus {
