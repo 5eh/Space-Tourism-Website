@@ -46,13 +46,13 @@
 
 
 
-    <main id="main" class="grid-container grid-container--crew flow">
+    <main id="main" class="grid-container grid-container--technology flow">
         <h1 class="numbered-title"><span aria-hidden="true">03</span>Space Launch 101</h1>
 
 
 
 
-        <div class="number-indicators grid" aria-label="Technology list" role="tablist">
+        <div class="number-indicators flex" aria-label="Technology list" role="tablist">
             <button aria-selected="true" aria-controls="launch-tab" tabindex="0" role="tab"
                 data-image="launch-image"><span class="sr-only">Launch
                     Vehicle</span>1</button>
@@ -65,10 +65,10 @@
         </div>
 
         <!-- Launch Vehicle -->
-        <article class="crew-details flow" id="launch-tab" role="tabpanel" tabindex="0">
+        <article class="technology-details flow" id="launch-tab" role="tabpanel" tabindex="0">
             <header class="flow flow--space-small letter-spacing-3">
                 <p class="fs-400 ff-sans-cond uppercase text-accent">The Terminology...</p>
-                <h2 class="fs-700 uppercase ff-serif text-white">Launch Vehicle</h2>
+                <h1 class="fs-700 uppercase ff-serif text-white">Launch Vehicle</h1>
             </header>
             <p class="fs-400 text-accent ff-sans-cond letter-spacing-3">A space capsule is an often-crewed spacecraft
                 that uses a blunt-body reentry
@@ -78,10 +78,10 @@
         </article>
 
         <!-- Spaceport -->
-        <article hidden class="crew-details flow" id="spaceport-tab" role="tabpanel" tabindex="0">
+        <article hidden class="technology-details flow" id="spaceport-tab" role="tabpanel" tabindex="0">
             <header class="flow flow--space-small letter-spacing-3">
                 <p class="fs-400 ff-sans-cond uppercase text-accent">The Terminology...</p>
-                <h2 class="fs-700 uppercase ff-serif text-white">Spaceport</h2>
+                <h1 class="fs-700 uppercase ff-serif text-white">Spaceport</h1>
             </header>
             <p class="fs-400 text-accent ff-sans-cond letter-spacing-3">A spaceport or cosmodrome is a site for
                 launching (or receiving) spacecraft,
@@ -91,12 +91,13 @@
         </article>
 
         <!-- Space Capsule -->
-        <article hidden class="crew-details flow" id="space-tab" role="tabpanel" tabindex="0">
+        <article hidden class="technology-details flow" id="space-tab" role="tabpanel" tabindex="0">
             <header class="flow flow--space-small letter-spacing-3">
                 <p class="fs-400 ff-sans-cond uppercase text-accent">The Terminology...</p>
-                <h2 class="fs-700 uppercase ff-serif text-white">Space capsule</h2>
+                <h1 class="fs-700 uppercase ff-serif text-white">Space capsule</h1>
             </header>
-            <p class="fs-400 text-accent ff-sans-cond letter-spacing-3">A space capsule is an often-crewed spacecraft
+            <p class="fs-400 text-accent ff-sans-cond letter-spacing-3">A space capsule is an often-technologyed
+                spacecraft
                 that uses a
                 blunt-body
                 reentry
@@ -107,13 +108,13 @@
 
 
 
-        <picture id="launch-tab">
+        <picture id="launch-image">
             <img src="assets/technology/image-launch-vehicle-portrait.jpg" alt="Space Launch Vehicle">
         </picture>
-        <picture hidden id="spaceport-tab">
+        <picture hidden id="spaceport-image">
             <img src="assets/technology/image-spaceport-portrait.jpg" alt="Spaceport Image">
         </picture>
-        <picture hidden id="space-tab">
+        <picture hidden id="space-image">
             <img src="assets/technology/image-space-capsule-portrait.jpg" alt="Douglas Hurley">
         </picture>
 
