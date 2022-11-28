@@ -7,8 +7,14 @@
 
 :root {
   /* colors */
-  --clr-dark: 230 35% 7%;
-  --clr-light: 231 77% 90%;
+
+  /* Create colors then add them onto design system */
+  --clr-background: 212, 65%, 8%;
+  --clr-dark: 212, 65%, 8%;
+  --clr-darkblue: 194, 73%, 36%;
+  --clr-primary: 200, 66%, 69%;
+  --clr-secondary: 189, 63%, 36%;
+  --clr-paragraph: 214, 20%, 69%;
   --clr-white: 0 0% 100%;
 
   /* font-sizes */
@@ -22,7 +28,8 @@
   --fs-200: 0.875rem;
 
   /* font-families */
-  --ff-serif: "Bellefair", serif;
+  --ff-serif: "Barlow", sans-serif;
+  --ff-inter: "Inter", sans-serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
 }
@@ -63,7 +70,7 @@
 
 /* Custom highlighting */
 *::selection {
-  background: hsl(var(--clr-light) / 0.25);
+  background: hsl(var(--clr-white) / 0.21);
 }
 
 /* Reset margins */
@@ -94,7 +101,7 @@ body {
   font-family: var(--ff-sans-normal);
   font-size: var(--fs-400);
   color: hsl(var(--clr-white));
-  background-color: hsl(var(--clr-dark));
+  background-color: hsl(var(--clr-background));
   line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
@@ -192,21 +199,26 @@ select {
 
 /* colors */
 
-.bg-dark {
-  background-color: hsl(var(--clr-dark));
+.bg-darkblue {
+  background-color: hsl(var(--clr-darkblue));
 }
-.bg-accent {
-  background-color: hsl(var(--clr-light));
+.bg-accent,
+.bg-primary {
+  background-color: hsl(var(--clr-primary));
 }
 .bg-white {
   background-color: hsl(var(--clr-white));
+}
+
+.bg-secondary {
+  background-color: hsl(var(--clr-secondary));
 }
 
 .text-dark {
   color: hsl(var(--clr-dark));
 }
 .text-accent {
-  color: hsl(var(--clr-light));
+  color: hsl(var(--clr-primary));
 }
 .text-white {
   color: hsl(var(--clr-white));
@@ -216,6 +228,9 @@ select {
 
 .ff-serif {
   font-family: var(--ff-serif);
+}
+.ff-inter {
+  font-family: var(--ff-inter);
 }
 .ff-sans-cond {
   font-family: var(--ff-sans-cond);
@@ -319,7 +334,7 @@ select {
 
 /* primary-header */
 .logo {
-  margin: 1.5rem clamp(1rem, 5vw, 3.5rem);
+  margin: 1.5rem clamp(1.5rem, 15vw, 1.5rem);
 }
 
 .primary-header {
@@ -352,7 +367,7 @@ select {
 
 @supports (backdrop-filter: blur(1rem)) {
   .primary-navigation {
-    background: hsl(var(--clr-light) / 0.05);
+    background: hsl(var(--clr-primary) / 0.05);
     backdrop-filter: blur(2rem);
   }
 }
@@ -369,6 +384,11 @@ select {
     flex-direction: column;
     transform: translateX(100%);
     transition: transform 500ms ease-in-out;
+  }
+
+  .logo {
+    margin: 1.5rem clamp(1.5rem, 15vw, 1.5rem);
+    width: 30%;
   }
 
   .primary-navigation[data-visible="true"] {
@@ -418,7 +438,7 @@ select {
     display: block;
     position: relative;
     height: 1px;
-    background-color: hsl(var(--clr-light) / 1);
+    background-color: hsl(var(--clr-primary) / 1);
     width: 100%;
     margin-right: -3rem;
     order: 1;
@@ -439,6 +459,7 @@ select {
   border: 0;
   background-color: transparent;
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+  transition: border-color 500ms ease-in-out;
 }
 
 .underline-indicators > *:hover,
@@ -836,7 +857,7 @@ body {
 }
 
 [role="tab"] {
-  color: hsl(var(--clr-light) / 1);
+  color: hsl(var(--clr-primary) / 1);
   transition: color 1000ms ease-in-out;
 }
 
